@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>About on </title>
+    <link>https://0xAlessandro.github.io/about/</link>
+    <description>Recent content in About on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 29 Aug 2024 15:32:00 +0200</lastBuildDate><atom:link href="https://0xAlessandro.github.io/about/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>https://0xAlessandro.github.io/about/about/</link>
+      <pubDate>Thu, 29 Aug 2024 15:32:00 +0200</pubDate>
+      
+      <guid>https://0xAlessandro.github.io/about/about/</guid>
+      <description>Hi, i’m 0xAlessandro from 🇮🇹 . I’m currently a freshman uni student, I enjoy front-end web security and passionate about cybersecurity.
+I’m a CTF player currently and I’ve played in many teams like TRX, Rubi di Cubrik and Cr3.mov. I currently play with TRX and I&amp;rsquo;m looking to level up in ctfs and get into a more competitive environment</description>
+    </item>
+    
+  </channel>
+</rss>

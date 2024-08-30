@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>chrome on </title>
+    <link>https://0xAlessandro.github.io/tags/chrome/</link>
+    <description>Recent content in chrome on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 29 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://0xAlessandro.github.io/tags/chrome/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SEKAICTF2024</title>
+      <link>https://0xAlessandro.github.io/posts/sekai/</link>
+      <pubDate>Thu, 29 Aug 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://0xAlessandro.github.io/posts/sekai/</guid>
+      <description>&lt;h1 id=&#34;sekai-2024&#34;&gt;SEKAI 2024&lt;/h1&gt;
+&lt;h1 id=&#34;htmlsandbox&#34;&gt;HTMLSANDBOX&lt;/h1&gt;
+&lt;p&gt;KEY POINT&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Create arbitrary html documents but you have to:&lt;/li&gt;
+&lt;li&gt;Set csp to default-src none&lt;/li&gt;
+&lt;li&gt;Event handlers and tags massive blacklist&lt;/li&gt;
+&lt;li&gt;Content-Type miss charset informations&lt;/li&gt;
+&lt;li&gt;ISO-2022-JP shenigans&lt;/li&gt;
+&lt;li&gt;Chrome content-type sniffing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://0xAlessandro.github.io/images/sekai/1.png&#34; alt=&#34;1.png&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
