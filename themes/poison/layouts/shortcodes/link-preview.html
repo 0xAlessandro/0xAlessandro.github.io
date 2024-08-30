@@ -1,0 +1,51 @@
+<style>
+/* Link preview styles aligned with the Poison theme */
+.link-preview {
+  background: var(--background-color); /* Use theme's background color */
+  border-radius: var(--border-radius); /* Use theme's border-radius */
+  box-shadow: var(--box-shadow); /* Use theme's box-shadow */
+  overflow: hidden;
+  margin: 1em 0;
+}
+
+.link-preview-container {
+  display: flex;
+  text-decoration: none;
+  color: inherit;
+}
+
+.link-preview-image img {
+  width: 120px; /* Adjust based on your design */
+  height: 80px; /* Adjust based on your design */
+  object-fit: cover;
+}
+
+.link-preview-info {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.link-preview-title {
+  margin: 0;
+  font-size: 1em;
+  line-height: 1.2;
+  text-decoration: underline;
+  color: var(--link-color); /* Use theme's link color */
+}
+
+</style>
+
+
+<div class="link-preview">
+  <a href="{{ .Get "url" }}" target="_blank" class="link-preview-container">
+    <div class="link-preview-image">
+      <img src="{{ .Get "image" }}" alt="{{ .Get "title" }}">
+    </div>
+    <div class="link-preview-info">
+      <span class="link-preview-title">{{ .Get "title" }}</span>
+    </div>
+  </a>
+</div>
+

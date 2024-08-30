@@ -1,0 +1,94 @@
+<style>
+  .callout {
+    background: #2a2a2a;
+    padding: 0.5em 1.25em; /* Padding to fit the emoji, title, and text */
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    color: #e0e0e0;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    overflow: hidden;
+  }
+
+  .callout-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; /* Allows text to wrap below if necessary */
+  }
+
+  .callout-header div {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+
+  .callout-header .emoji {
+    font-size: 1.2em; /* Adjusted to make the emoji slightly smaller */
+    margin-right: 0.5em; /* Spacing between emoji and title */
+  }
+
+
+  .callout-inner {
+    margin-left: 1em;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+    opacity: 0;
+    flex-basis: 100%; /* Ensure it starts on a new line if necessary */
+  }
+
+  .callout.expanded .callout-inner {
+    max-height: 100px; /* Adjust based on your content's height */
+    opacity: 1;
+  }
+
+  .toggle-btn {
+    background: none;
+    border: none;
+    color: #e0e0e0;
+    font-size: 1.25em;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .expanded .toggle-btn {
+    transform: rotate(90deg); /* Rotate the button when expanded */
+  }
+
+  @media (max-width: 767px) {
+    .callout {
+      padding: 0.5em 0.75em 0.5em 0.6em;
+    }
+    .callout-inner {
+      margin-left: 0.5em;
+    }
+  }
+</style>
+
+<div class="callout" onclick="toggleCallout(this)">
+  <div class="callout-header">
+    <button class="toggle-btn">&gt;</button>
+    <div class="emoji">{{ .Get "emoji" }}</div>
+    <div>{{ .Get "title" }}</div> <!-- Emoji and title on the same line -->
+  </div>
+  <div class="callout-inner">
+    {{ .Get "text" | markdownify }}
+  </div>
+</div>
+
+<script>
+  function toggleCallout(calloutElement) {
+    const content = calloutElement.querySelector('.callout-inner');
+    const isExpanded = calloutElement.classList.contains('expanded');
+
+    if (isExpanded) {
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+
+    calloutElement.classList.toggle('expanded');
+  }
+</script>

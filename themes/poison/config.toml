@@ -1,0 +1,4 @@
+[module]
+  [module.hugoVersion]
+    min = "0.41.0"
+title = "My blog"
