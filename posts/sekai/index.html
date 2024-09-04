@@ -346,7 +346,7 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
           
         
 
-        <span>11 mins read</span>
+        <span>12 mins read</span>
       </span>
     </div>
 
@@ -643,12 +643,101 @@ powered by <a target="_blank" href="https://gohugo.io">Hugo</a> | themed with <a
 <p><a href="https://frontendmasters.com/blog/streaming-html/" target="_blank">https://frontendmasters.com/blog/streaming-html/</a></p>
 <p><a href="https://dev.to/tigt/the-weirdly-obscure-art-of-streamed-html-4gc2" target="_blank">https://dev.to/tigt/the-weirdly-obscure-art-of-streamed-html-4gc2</a>
 <a href="https://lamplightdev.com/blog/2024/01/10/streaming-html-out-of-order-without-javascript/?ck_subscriber_id=2246502080" target="_blank">https://lamplightdev.com/blog/2024/01/10/streaming-html-out-of-order-without-javascript/?ck_subscriber_id=2246502080</a></p>
-<!-- raw HTML omitted -->
-<p>The <strong>advantages of streaming HTML</strong> over waiting for the entire response to be generated before sending it to the browser are clear - you can <strong>render something immediately</strong>
-to indicate to the user that something is happening, and you can start
-downloading assets like CSS and JavaScript earlier, while you <strong>wait for the more time consuming parts of the response</strong> to be generated.</p>
-<!-- raw HTML omitted -->
-<p>Since we know that the only thing we can abuse here is the charset, what exactly can we do with streamed HTML?</p>
+<style>
+  .callout {
+    background: #2a2a2a;
+    padding: 0.5em 1.25em;  
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    color: #e0e0e0;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    overflow: hidden;
+  }
+
+  .callout-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;  
+  }
+
+  .callout-header div {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+
+  .callout-header .emoji {
+    font-size: 1.2em;  
+    margin-right: 0.5em;  
+  }
+
+
+  .callout-inner {
+    margin-left: 1em;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+    opacity: 0;
+    flex-basis: 100%;  
+  }
+
+  .callout.expanded .callout-inner {
+    max-height: 100px;  
+    opacity: 1;
+  }
+
+  .toggle-btn {
+    background: none;
+    border: none;
+    color: #e0e0e0;
+    font-size: 1.25em;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .expanded .toggle-btn {
+    transform: rotate(90deg);  
+  }
+
+  @media (max-width: 767px) {
+    .callout {
+      padding: 0.5em 0.75em 0.5em 0.6em;
+    }
+    .callout-inner {
+      margin-left: 0.5em;
+    }
+  }
+</style>
+
+<div class="callout" onclick="toggleCallout(this)">
+  <div class="callout-header">
+    <button class="toggle-btn">&gt;</button>
+    <div class="emoji">✅ </div>
+    <div>streaming HTML</div> 
+  </div>
+  <div class="callout-inner">
+    The <strong>concept of streaming HTML</strong> - sending HTML from a web server to a browser in chunks as it is generated - is <strong>nothing new</strong>.It seemed to take a back seat at the beginning of the age of modern front-end frameworks and Single Page Applications - where the entire page was generated in the browser - but as the pendulum swings back towards server-side rendering with full stack frameworks, <strong>streaming responses are becoming popular again</strong>. The <strong>advantages of streaming HTML</strong> over waiting for the entire response to be generated before sending it to the browser are clear - you can <strong>render something immediately</strong> to indicate to the user that something is happening, and you can start downloading assets like CSS and JavaScript earlier, while you <strong>wait for the more time consuming parts of the response</strong> to be generated.
+  </div>
+</div>
+
+<script>
+  function toggleCallout(calloutElement) {
+    const content = calloutElement.querySelector('.callout-inner');
+    const isExpanded = calloutElement.classList.contains('expanded');
+
+    if (isExpanded) {
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+
+    calloutElement.classList.toggle('expanded');
+  }
+</script>
+
 <p>Suppose we upload a very large HTML file, one that will be sent over multiple TCP packets (which means it needs to weigh more than 65KB). The Chrome browser, to improve performance, won&rsquo;t wait to render the full document. Instead, it will render the first part and then the remaining part.</p>
 <p>However, the hint clearly talks about parsing discrepancies between streamed and non-streamed HTML. But where do we encounter the non-streamed HTML? 🤔</p>
 <p>It turns out that when our payload is validated, it&rsquo;s rendered with the <code>data:uri</code> scheme. This means it will parse the document all at once, in a non-streamed mode.</p>
@@ -732,8 +821,101 @@ Then we set an another time the encoding to be ascii(optional) and fill the tcp 
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&lt;/html&gt;&#39;&#39;&#39;</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">...</span>
 </span></span></code></pre></div><p>Here we declare the charset to be utf-8 so that from this moment on there is a valid charset, the browser does not have to sniff anything in order to determine the charset. Then we use a payload which won’t be filtered out to get the xss.</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<style>
+  .callout {
+    background: #2a2a2a;
+    padding: 0.5em 1.25em;  
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    color: #e0e0e0;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    overflow: hidden;
+  }
+
+  .callout-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;  
+  }
+
+  .callout-header div {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+
+  .callout-header .emoji {
+    font-size: 1.2em;  
+    margin-right: 0.5em;  
+  }
+
+
+  .callout-inner {
+    margin-left: 1em;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+    opacity: 0;
+    flex-basis: 100%;  
+  }
+
+  .callout.expanded .callout-inner {
+    max-height: 100px;  
+    opacity: 1;
+  }
+
+  .toggle-btn {
+    background: none;
+    border: none;
+    color: #e0e0e0;
+    font-size: 1.25em;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .expanded .toggle-btn {
+    transform: rotate(90deg);  
+  }
+
+  @media (max-width: 767px) {
+    .callout {
+      padding: 0.5em 0.75em 0.5em 0.6em;
+    }
+    .callout-inner {
+      margin-left: 0.5em;
+    }
+  }
+</style>
+
+<div class="callout" onclick="toggleCallout(this)">
+  <div class="callout-header">
+    <button class="toggle-btn">&gt;</button>
+    <div class="emoji">💡</div>
+    <div>TIP</div> 
+  </div>
+  <div class="callout-inner">
+    If you are wondering how i came up with this <code>svg</code> payload, I compared the blacklisted event handlers in the code to the one present in portswigger xss cheatsheet
+  </div>
+</div>
+
+<script>
+  function toggleCallout(calloutElement) {
+    const content = calloutElement.querySelector('.callout-inner');
+    const isExpanded = calloutElement.classList.contains('expanded');
+
+    if (isExpanded) {
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+
+    calloutElement.classList.toggle('expanded');
+  }
+</script>
+
 <p>In the end the document in the streamed mode will be parsed in the following way, crafting a valid xss payload while at the same time dropping the csp</p>
 <p><img src="/images/sekai/7.png" alt="7.png"></p>
 <p><img src="/images/sekai/8.png" alt="8.png"></p>
@@ -746,10 +928,293 @@ Then we set an another time the encoding to be ascii(optional) and fill the tcp 
 <li>non streamed parsing(<code>data:uri</code>) will wait for the whole document to load and then determine the charset, finding that there is a charset specified with a meta tag, therefore using <code>UTF-8</code> as the charset.</li>
 <li>streamed parsing html in order to improve the rendering performance does not wait for the whole document to load but instead it evaluates the first chunks sniffing and guessing the charset by the character present in it and using the guessed encoding, when it gets to the second chunk and sees a meta tag specifying the charset it does not re-encode the previous chunk but instead it goes on using this time the specified charset.</li>
 </ul>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<style>
+  .callout {
+    background: #2a2a2a;
+    padding: 0.5em 1.25em;  
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    color: #e0e0e0;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    overflow: hidden;
+  }
+
+  .callout-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;  
+  }
+
+  .callout-header div {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+
+  .callout-header .emoji {
+    font-size: 1.2em;  
+    margin-right: 0.5em;  
+  }
+
+
+  .callout-inner {
+    margin-left: 1em;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+    opacity: 0;
+    flex-basis: 100%;  
+  }
+
+  .callout.expanded .callout-inner {
+    max-height: 100px;  
+    opacity: 1;
+  }
+
+  .toggle-btn {
+    background: none;
+    border: none;
+    color: #e0e0e0;
+    font-size: 1.25em;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .expanded .toggle-btn {
+    transform: rotate(90deg);  
+  }
+
+  @media (max-width: 767px) {
+    .callout {
+      padding: 0.5em 0.75em 0.5em 0.6em;
+    }
+    .callout-inner {
+      margin-left: 0.5em;
+    }
+  }
+</style>
+
+<div class="callout" onclick="toggleCallout(this)">
+  <div class="callout-header">
+    <button class="toggle-btn">&gt;</button>
+    <div class="emoji">🚨</div>
+    <div>NOTE</div> 
+  </div>
+  <div class="callout-inner">
+    As pointed out to me by @<strong>bawolff network conditions affect this a lot which won’t make the same exploit work under localhost.</strong>
+  </div>
+</div>
+
+<script>
+  function toggleCallout(calloutElement) {
+    const content = calloutElement.querySelector('.callout-inner');
+    const isExpanded = calloutElement.classList.contains('expanded');
+
+    if (isExpanded) {
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+
+    calloutElement.classList.toggle('expanded');
+  }
+</script>
+
 <p>I enjoyed a lot this challenge, big shoutout to the author with his immaculate writeup and fantastic challenge, however I was not able to solve it during the ctf, nevertheless i started spending a lot of time and also thanks to the help of @bawolff  I understood the challenge in depth and came up with my payload</p>
 <p><a href="https://blog.ankursundara.com/htmlsandbox-writeup/" target="_blank">https://blog.ankursundara.com/htmlsandbox-writeup/</a></p>
+<p>NOTE:</p>
+<style>
+  .callout {
+    background: #2a2a2a;
+    padding: 0.5em 1.25em;  
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    color: #e0e0e0;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    overflow: hidden;
+  }
+
+  .callout-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;  
+  }
+
+  .callout-header div {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+
+  .callout-header .emoji {
+    font-size: 1.2em;  
+    margin-right: 0.5em;  
+  }
+
+
+  .callout-inner {
+    margin-left: 1em;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+    opacity: 0;
+    flex-basis: 100%;  
+  }
+
+  .callout.expanded .callout-inner {
+    max-height: 100px;  
+    opacity: 1;
+  }
+
+  .toggle-btn {
+    background: none;
+    border: none;
+    color: #e0e0e0;
+    font-size: 1.25em;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .expanded .toggle-btn {
+    transform: rotate(90deg);  
+  }
+
+  @media (max-width: 767px) {
+    .callout {
+      padding: 0.5em 0.75em 0.5em 0.6em;
+    }
+    .callout-inner {
+      margin-left: 0.5em;
+    }
+  }
+</style>
+
+<div class="callout" onclick="toggleCallout(this)">
+  <div class="callout-header">
+    <button class="toggle-btn">&gt;</button>
+    <div class="emoji">📌</div>
+    <div>chrome</div> 
+  </div>
+  <div class="callout-inner">
+    This exploit takes advantage of the fact that chrome will not follow the html spec about parsing that can be found in here <a href="https://html.spec.whatwg.org/multipage/parsing.html#the-input-byte-stream" target="_blank">https://html.spec.whatwg.org/multipage/parsing.html#the-input-byte-stream</a>
+  </div>
+</div>
+
+<script>
+  function toggleCallout(calloutElement) {
+    const content = calloutElement.querySelector('.callout-inner');
+    const isExpanded = calloutElement.classList.contains('expanded');
+
+    if (isExpanded) {
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+
+    calloutElement.classList.toggle('expanded');
+  }
+</script>
+
+<style>
+  .callout {
+    background: #2a2a2a;
+    padding: 0.5em 1.25em;  
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    color: #e0e0e0;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    overflow: hidden;
+  }
+
+  .callout-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;  
+  }
+
+  .callout-header div {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+
+  .callout-header .emoji {
+    font-size: 1.2em;  
+    margin-right: 0.5em;  
+  }
+
+
+  .callout-inner {
+    margin-left: 1em;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+    opacity: 0;
+    flex-basis: 100%;  
+  }
+
+  .callout.expanded .callout-inner {
+    max-height: 100px;  
+    opacity: 1;
+  }
+
+  .toggle-btn {
+    background: none;
+    border: none;
+    color: #e0e0e0;
+    font-size: 1.25em;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .expanded .toggle-btn {
+    transform: rotate(90deg);  
+  }
+
+  @media (max-width: 767px) {
+    .callout {
+      padding: 0.5em 0.75em 0.5em 0.6em;
+    }
+    .callout-inner {
+      margin-left: 0.5em;
+    }
+  }
+</style>
+
+<div class="callout" onclick="toggleCallout(this)">
+  <div class="callout-header">
+    <button class="toggle-btn">&gt;</button>
+    <div class="emoji">❓</div>
+    <div>EVENT HANDLERS</div> 
+  </div>
+  <div class="callout-inner">
+    For those wondering if others event handlers could be used I ran a simple script which gave me the allowed event handlers: <a href="https://pastebin.com/juxAPefP" target="_blank">https://pastebin.com/juxAPefP</a>
+  </div>
+</div>
+
+<script>
+  function toggleCallout(calloutElement) {
+    const content = calloutElement.querySelector('.callout-inner');
+    const isExpanded = calloutElement.classList.contains('expanded');
+
+    if (isExpanded) {
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+
+    calloutElement.classList.toggle('expanded');
+  }
+</script>
   
   <hr>
 <div class="footer">
