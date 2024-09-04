@@ -8,13 +8,12 @@
     <language>en-us</language>
     <lastBuildDate>Thu, 29 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://0xAlessandro.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>SEKAICTF2024</title>
+      <title>SekaiCTF 2024</title>
       <link>https://0xAlessandro.github.io/posts/sekai/</link>
       <pubDate>Thu, 29 Aug 2024 00:00:00 +0000</pubDate>
       
       <guid>https://0xAlessandro.github.io/posts/sekai/</guid>
-      <description>&lt;h1 id=&#34;sekai-2024&#34;&gt;SEKAI 2024&lt;/h1&gt;
-&lt;h1 id=&#34;htmlsandbox&#34;&gt;HTMLSANDBOX&lt;/h1&gt;
+      <description>&lt;h1 id=&#34;htmlsandbox&#34;&gt;HTMLSANDBOX&lt;/h1&gt;
 &lt;p&gt;KEY POINT&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Create arbitrary html documents but you have to:&lt;/li&gt;
