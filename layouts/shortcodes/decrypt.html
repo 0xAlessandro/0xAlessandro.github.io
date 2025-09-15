@@ -1,0 +1,7 @@
+{{- $text := .Get "text" | default (.Inner | default "") -}}
+{{- $speed := .Get "speed" | default "30" -}}
+{{- $delay := .Get "delay" | default "0" -}}
+{{- $charset := .Get "charset" | default "" -}}
+
+<span data-decrypt data-text="{{ $text }}" data-speed="{{ $speed }}" data-delay="{{ $delay }}" {{ if $charset }}
+    data-charset="{{ $charset }}" {{ end }}>{{ $text }}</span>

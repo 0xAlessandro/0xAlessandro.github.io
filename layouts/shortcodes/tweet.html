@@ -1,0 +1,24 @@
+{{- $id := .Get "id" -}}
+{{- $url := .Get "url" -}}
+{{- if not $url -}}
+{{- $url = .Get 0 -}}
+{{- end -}}
+
+{{- if and (not $id) $url -}}
+{{- $matches := findRE `status/(\d+)` $url -}}
+{{- if gt (len $matches) 0 -}}
+{{- $id = replaceRE `.*status/(\d+).*` `$1` $url -}}
+{{- end -}}
+{{- end -}}
+
+{{- if not $id -}}
+{{- errorf "tweet shortcode requires either id or url param" -}}
+{{- end -}}
+
+<div class="tweet-embed-wrapper">
+    <blockquote class="twitter-tweet"><a href="https://twitter.com/i/status/{{ $id }}"></a></blockquote>
+</div>
+{{- if not (.Page.Scratch.Get "tweetWidgetsLoaded") -}}
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+{{- .Page.Scratch.Set "tweetWidgetsLoaded" true -}}
+{{- end -}}

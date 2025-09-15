@@ -1,0 +1,15 @@
+{{- $src := .Get "src" -}}
+{{- $name := .Get "name" -}}
+{{- $class := .Get "class" | default "" -}}
+
+{{- $path := "" -}}
+{{- if $src -}}
+{{- $path = printf "static/%s" $src -}}
+{{- else if $name -}}
+{{- $path = printf "static/svg/%s.svg" $name -}}
+{{- else -}}
+{{- errorf "svg shortcode requires either src or name param" -}}
+{{- end -}}
+
+{{- $svg := readFile $path | safeHTML -}}
+<div class="svg-inline {{ $class }}">{{ $svg }}</div>

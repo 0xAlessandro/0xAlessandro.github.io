@@ -1,0 +1,34 @@
+{{/* Custom override to append decrypt.js to theme bundle */}}
+{{ $js := slice
+(resources.Get "js/light_dark.js")
+(resources.Get "js/tabs.js") }}
+
+{{/* KaTeX */}}
+{{ $js = $js | append
+(resources.Get "js/lib/katex.js")
+(resources.Get "js/lib/auto-render.js") }}
+
+{{/* Personal/custom scripts */}}
+{{ $js = $js | append (resources.Get "js/katex.js") }}
+
+{{ if not .Site.Params.hideToc }}
+{{ $js = $js | append (resources.Get "js/toc.js") }}
+{{ end }}
+
+{{ $js = $js | append (resources.Get "js/codeblock.js") }}
+
+{{/* Our decryption animation scripts */}}
+{{ $js = $js | append (resources.Get "js/decrypt.js") }}
+{{ $js = $js | append (resources.Get "js/decrypt-overlay.js") }}
+
+{{ $js_bundle := $js | resources.Concat "js/bundle.js" | minify | fingerprint }}
+
+<script defer language="javascript" type="text/javascript" src="{{ $js_bundle.RelPermalink }}"></script>
+
+{{ if .Site.Params.plausible }}
+<script defer data-domain="{{ .Site.Params.plausible_domain }}" src="{{ .Site.Params.plausible_script }}"></script>
+{{ end }}
+
+{{ if hugo.IsProduction -}}
+{{ template "_internal/google_analytics.html" . -}}
+{{ end -}}

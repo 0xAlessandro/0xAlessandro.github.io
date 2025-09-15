@@ -1,0 +1,28 @@
+{{ define "main" -}}
+<div class="posts-grid">
+    {{ $frontPageTypes := default (slice "posts") .Site.Params.front_page_content }}
+    {{ range (.Paginate (where .Site.RegularPages "Type" "in" $frontPageTypes)).Pages }}
+    <article class="post-card">
+        <a class="post-card-link" href="{{ .RelPermalink }}">
+            {{ with .Params.featuredImage }}
+            <div class="post-card-image">
+                <img src="{{ . }}" alt="{{ $.Title }}">
+            </div>
+            {{ end }}
+            <div class="post-card-content">
+                <h2 class="post-card-title">{{ .Title }}</h2>
+                {{ if .Date }}
+                <time class="post-card-date">{{ .Date.Format "Jan 2, 2006" }}</time>
+                {{ end }}
+                {{ with .Params.tags }}
+                <ul class="post-card-tags">
+                    {{ range . }}<li>{{ . }}</li>{{ end }}
+                </ul>
+                {{ end }}
+            </div>
+        </a>
+    </article>
+    {{- end }}
+</div>
+{{ partial "pagination.html" . }}
+{{- end }}

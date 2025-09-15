@@ -1,0 +1,46 @@
+#decrypt-overlay {
+    position: fixed;
+    inset: 0;
+    background: #000000;
+    color: #c9d1d9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 300ms ease;
+}
+
+#decrypt-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#decrypt-overlay .content {
+    font-family: "Approach Mono Medium", "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: clamp(20px, 4vw, 48px);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    text-align: center;
+    padding: 24px 32px;
+    max-width: min(90vw, 900px);
+    margin: 0 auto;
+}
+
+#decrypt-overlay #decrypt-overlay-text {
+    display: inline-block;
+    background: linear-gradient(90deg, #ffffff 0%, #ffffff 50%, #808080 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #decrypt-overlay {
+        transition: none;
+    }
+
+    /* no cursor animation */
+}

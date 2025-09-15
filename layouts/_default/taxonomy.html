@@ -1,0 +1,22 @@
+{{ define "main" -}}
+<h1 class="title">{{ .Title }}</h1>
+<div class="posts-grid">
+    {{ range .Pages }}
+    <article class="post-card">
+        <a class="post-card-link" href="{{ .RelPermalink }}">
+            {{ with .Params.featuredImage }}
+            <div class="post-card-image">
+                <img src="{{ . }}" alt="{{ $.Title }}">
+            </div>
+            {{ end }}
+            <div class="post-card-content">
+                <h2 class="post-card-title">{{ .Title }}</h2>
+                {{ if .Date }}
+                <time class="post-card-date">{{ .Date.Format "Jan 2, 2006" }}</time>
+                {{ end }}
+            </div>
+        </a>
+    </article>
+    {{ end }}
+</div>
+{{- end }}
