@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>chrome on</title><link>https://0xAlessandro.github.io/tags/chrome/</link><description>Recent content in chrome on</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 15 Sep 2025 14:39:47 +0200</lastBuildDate><atom:link href="https://0xAlessandro.github.io/tags/chrome/index.xml" rel="self" type="application/rss+xml"/><item><title>Twitter Chall</title><link>https://0xAlessandro.github.io/posts/twitter-chall/</link><pubDate>Mon, 15 Sep 2025 14:39:47 +0200</pubDate><guid>https://0xAlessandro.github.io/posts/twitter-chall/</guid><description>Last week while browsing on X I stumbled upon this challenge.
+Knowing the author and his love for connection pools I wanted to give it a shot and I was able to get the first blood 🩸.
+The challenge source code is pretty minimal and easy to understand. From the description of the challenge we can get an idea of what awaits us.
+CHALLENGE INTRODUCTION We are presented with a website with 2 routes and a middleware:</description></item><item><title>SekaiCTF 2024</title><link>https://0xAlessandro.github.io/posts/sekai/</link><pubDate>Thu, 29 Aug 2024 00:00:00 +0000</pubDate><guid>https://0xAlessandro.github.io/posts/sekai/</guid><description>&lt;h1 id="htmlsandbox">HTMLSANDBOX&lt;/h1>
+&lt;p>KEY POINT&lt;/p>
+&lt;ul>
+&lt;li>Create arbitrary html documents but you have to:&lt;/li>
+&lt;li>Set csp to default-src none&lt;/li>
+&lt;li>Event handlers and tags massive blacklist&lt;/li>
+&lt;li>Content-Type miss charset informations&lt;/li>
+&lt;li>ISO-2022-JP shenigans&lt;/li>
+&lt;li>Chrome content-type sniffing&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://0xAlessandro.github.io/images/sekai/1.png" alt="1.png">&lt;/p></description></item></channel></rss>
