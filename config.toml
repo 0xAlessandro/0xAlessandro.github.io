@@ -80,3 +80,15 @@ enableEmoji = true
 [taxonomies]
     series = 'series'
     tags = 'tags'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.parser]
+      autoHeadingID = true
+      autoHeadingIDType = "github"
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 6
+    ordered = false

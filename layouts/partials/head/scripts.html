@@ -13,9 +13,11 @@
 
 {{ if not .Site.Params.hideToc }}
 {{ $js = $js | append (resources.Get "js/toc.js") }}
+{{ $js = $js | append (resources.Get "js/toc-overlay.js") }}
 {{ end }}
 
 {{ $js = $js | append (resources.Get "js/codeblock.js") }}
+{{ $js = $js | append (resources.Get "js/back-to-top.js") }}
 
 {{/* Our decryption animation scripts */}}
 {{ $js = $js | append (resources.Get "js/decrypt.js") }}
