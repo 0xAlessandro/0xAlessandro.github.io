@@ -19,7 +19,7 @@ We are presented with a website with 2 routes and a middleware:
 
 - `/` renders `index.ejs`
 - `/report`  reports a URL to the Puppeteer bot
-- The middleware sets the following CSP `res.setHeader("Content-Security-Policy", `default-src 'none'; script-src 'nonce-${nonce}'; connect-src *.${DOMAIN}:${PORT}; base-uri 'none'; frame-ancestors 'none'`);`
+- The middleware sets the following CSP ``res.setHeader("Content-Security-Policy", `default-src 'none'; script-src 'nonce-${nonce}; connect-src *.${DOMAIN}:${PORT}; base-uri 'none'; frame-ancestors 'none'\`);``
 
 Let’s look at `index.ejs`, as so far there has been nothing relevant to be seen
 
@@ -183,6 +183,7 @@ Well actually why don’t we use the ordering to our advantage, let’s take a l
 
 {{< svg src="images/post2/svg/step3_(1).svg" >}}
 
+
 Now at this point let’s say that from `attacker.com` we make 3 fetch requests which will go into the queue, we are using the following domains
 
 - `fa.0xalessandro.me`
@@ -190,6 +191,7 @@ Now at this point let’s say that from `attacker.com` we make 3 fetch requests 
 - `fz.0xalessandro.me`
 
 {{< svg src="images/post2/svg/step3_(2).svg" >}}
+
 
 As you can see the secret location is pinched in between `fa` and `fz` since `scheme` and `port` are the same, the check is done alphabetically on the full domain. At this point we need a way to determine between which extremes the fetch request is encapsulated.
 
@@ -200,6 +202,7 @@ This creates timing differences that we can exploit, while `aa` and `fa` will ha
  
 
 {{< svg src="images/post2/svg/final.svg" >}}
+
 
 As a general recap:
 
