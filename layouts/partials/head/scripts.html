@@ -18,6 +18,7 @@
 
 {{ $js = $js | append (resources.Get "js/codeblock.js") }}
 {{ $js = $js | append (resources.Get "js/back-to-top.js") }}
+{{ $js = $js | append (resources.Get "js/hash-offset.js") }}
 
 {{/* Our decryption animation scripts */}}
 {{ $js = $js | append (resources.Get "js/decrypt.js") }}

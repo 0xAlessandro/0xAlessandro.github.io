@@ -9,7 +9,8 @@
     z-index: 9999;
     opacity: 1;
     pointer-events: auto;
-    transition: opacity 300ms ease;
+    transition: opacity 380ms ease;
+    will-change: opacity;
 }
 
 #decrypt-overlay.hidden {
