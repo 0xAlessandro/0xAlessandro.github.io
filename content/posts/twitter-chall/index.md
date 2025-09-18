@@ -462,6 +462,7 @@ Here’s the code I’ve used, tweaked a bit with the help of gpt, i was too laz
 {{< /details >}}
 
     
+<a id="server-js"></a>
 {{< details summary="server.js" >}}
 ```jsx
 // server.js
@@ -605,7 +606,7 @@ What you’ll need is the following:
 
 What we now need to do is to try and get a feel of what happens in the browser when we interfere with the connection pool.
 
-For the first step we need to host a sleeper webapp which will just help us have a pending request for N time we choose, it can be easily implemented in a lot of ways and won’t go into the details [ref1](https://www.notion.so/TEST-26e6f216acb880eda886eeb380118c05?pvs=21) [ref2](https://blog.babelo.xyz/posts/css-exfiltration-under-default-src-self/#go-server).
+For the first step we need to host a sleeper webapp which will just help us have a pending request for N time we choose, it can be easily implemented in a lot of ways and won’t go into the details [ref1](#server-js) [ref2](https://blog.babelo.xyz/posts/css-exfiltration-under-default-src-self/#go-server).
 
 After hosting a simple sleeper and setup a wildcard A record for `*.yourdomain.tld` pointing to the same IP.
 
