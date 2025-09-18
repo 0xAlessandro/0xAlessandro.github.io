@@ -4,9 +4,9 @@ date: 2025-09-15T14:39:47+02:00
 draft: false
 tags: ["connection pool","chrome","xsleak"]
 ---
-{{< callout emoji="✏️ " title="Edit (2025-09-18)" text="Added explicit credit to @SharpEdged for explaining the connection‑pool origin‑ordering approach to me before. Also linked prior art by Salvatore Abello" >}}
+{{< callout emoji="✏️ " title="Edit (2025-09-18)" text="Added explicit credit to @SharpEdged for explaining the connection‑pool origin‑ordering approach to me. Also linked prior art by Salvatore Abello" >}}
 
-Acknowledgment: The core technique used here (leaking via connection‑pool origin ordering) was explained to me by @SharpEdged before. Prior art on pool ordering: Salvatore Abello, “CSS Exfiltration under default‑src 'self'” : https://blog.babelo.xyz/posts/css-exfiltration-under-default-src-self/#abusing-groupid-hash-ordering
+Acknowledgment: The core technique used here (leaking via connection‑pool origin ordering) was explained to me by @SharpEdged. Prior art on pool ordering: Salvatore Abello, “CSS Exfiltration under default‑src 'self'” : https://blog.babelo.xyz/posts/css-exfiltration-under-default-src-self/#abusing-groupid-hash-ordering
 
 Last week while browsing on X I stumbled upon this challenge.
 
@@ -601,7 +601,7 @@ Chromium groups connections by `{port, scheme, host}` and drains queued req
 
 ## Acknowledgments
 
-Thanks to @SharpEdged he explained to me the connection‑pool origin‑ordering approach that enabled this solve. For background on the pool ordering behavior itself, see Salvatore Abello’s “CSS Exfiltration under default‑src 'self'”.
+Thanks to @SharpEdged, who explained to me the connection‑pool origin‑ordering approach that enabled this solve. For background on the pool ordering behavior itself, see Salvatore Abello’s “CSS Exfiltration under default‑src 'self'”.
 
 ## APPENDIX
 
