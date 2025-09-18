@@ -1,0 +1,6 @@
+hugo --minify -d docs
+git add docs
+git commit -m "Update site"
+git push
+
+for pubblishing new things

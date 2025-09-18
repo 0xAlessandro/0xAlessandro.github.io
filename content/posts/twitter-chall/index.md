@@ -173,7 +173,7 @@ $$
                                                 \text{Connection Pool full and sorted request queued}
 $$
 
-Ordering is by tuple `{scheme, host, port}`; among equal scheme/port, hosts resolve [lexicographically](https://source.chromium.org/chromium/chromium/src/+/main:net/socket/client_socket_pool.h).
+Ordering is by tuple `{port, scheme, host}`; among equal scheme/port, hosts resolve [lexicographically](https://source.chromium.org/chromium/chromium/src/+/main:net/socket/client_socket_pool.h).
 
 Now comes the interesting part, remember that the challenge handles hash change by re-fetching the secret subdomain we need to leak, it’s worth also remembering that under normal circumstances changing the fragment (`#`) in the URL does not issue a new request to the webpage.
 
@@ -586,13 +586,13 @@ app.listen(80, () => {
 
 ### LHS NOTE
 
-- When the pool frees a slot, queued requests resolve in sorted order by `{scheme, host, port}`. Your 16 probe hosts bracket the victim host.
+- When the pool frees a slot, queued requests resolve in sorted order by `{port, scheme, host}`. Your 16 probe hosts bracket the victim host.
 - The largest inter-arrival gap appears where the victim is inserted. Therefore, the character immediately before that gap (the LHS) is the victim’s hex character.
 - Minimal example: If probes resolve in order 8, 9, [gap], a, b... and the big gap is between 9 and a, then 9 (LHS of the gap) is the victim’s character.
 
 ### Why the timing gap appears: alphabetical host ordering
 
-Chromium groups connections by `{scheme, host, port}` and drains queued requests in lexicographic order of the host when scheme/port match. By choosing probe subdomains that bracket the victim’s host (e.g., 8, 9, a, b …), the victim’s queued request is inserted between two of our probes. When a single fused socket frees up, the queue drains in order: probes before the victim resolve in tight succession, then there’s a larger pause while the victim’s cross-origin request completes, and finally the remaining probes resolve. The maximum inter-arrival gap therefore pinpoints the victim’s position, and the character immediately to its left (LHS) among our probes is the victim’s hex nibble.
+Chromium groups connections by `{port, scheme, host}` and drains queued requests in lexicographic order of the host when scheme/port match. By choosing probe subdomains that bracket the victim’s host (e.g., 8, 9, a, b …), the victim’s queued request is inserted between two of our probes. When a single fused socket frees up, the queue drains in order: probes before the victim resolve in tight succession, then there’s a larger pause while the victim’s cross-origin request completes, and finally the remaining probes resolve. The maximum inter-arrival gap therefore pinpoints the victim’s position, and the character immediately to its left (LHS) among our probes is the victim’s hex nibble.
 
 ## APPENDIX
 
