@@ -595,6 +595,10 @@ app.listen(80, () => {
 
 Chromium groups connections by `{port, scheme, host}` and drains queued requests in lexicographic order of the host when scheme/port match. By choosing probe subdomains that bracket the victim’s host (e.g., 8, 9, a, b …), the victim’s queued request is inserted between two of our probes. When a single fused socket frees up, the queue drains in order: probes before the victim resolve in tight succession, then there’s a larger pause while the victim’s cross-origin request completes, and finally the remaining probes resolve. The maximum inter-arrival gap therefore pinpoints the victim’s position, and the character immediately to its left (LHS) among our probes is the victim’s hex nibble.
 
+## Acknowledgments
+
+Thanks to @SharpEdge for pointing out that queued connections are sorted; this insight was key to the approach described here.
+
 ## APPENDIX
 
 ### LAB SETUP
